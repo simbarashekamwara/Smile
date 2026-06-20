@@ -1,0 +1,7 @@
+pyttsx3
+wolframalpha
+wikipedia
+emoji
+pyjokes
+SpeechRecognition
+PyAudio
