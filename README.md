@@ -1,38 +1,127 @@
-# Smile - Your AI-Powered Voice Assistant
-#### Video Demo: [Click here to watch the demo](<https://youtu.be/i92gUElE-hc>)
+# Smile 🎙️
+> An AI-powered voice assistant built in Python — talk to it, and it talks back.
 
-#### Description:
-Smile is an advanced voice assistant developed using Python, integrated with Google's Generative AI (`gemini-1.5-flash`), speech recognition capabilities, and real-time text-to-speech synthesis. Designed to streamline user interactions through voice commands, Smile can handle a variety of tasks, from providing motivational quotes to interpreting mathematical expressions.
+![Status](https://img.shields.io/badge/status-complete-brightgreen)
+![Python](https://img.shields.io/badge/python-3.x-blue)
+![AI](https://img.shields.io/badge/AI-Gemini%201.5%20Flash-orange)
 
-Smile is built with accessibility in mind. Whether you're a student needing quick math solutions, a programmer looking for coding advice, or someone seeking inspiration through famous quotes, Smile has got you covered. The assistant listens to your commands, processes them using cutting-edge AI, and delivers spoken responses with a human-like quality.
+🎬 **[Watch the Demo](https://youtu.be/i92gUElE-hc)**
 
-#### Features:
-- **Real-time Speech Recognition**: Smile uses Google’s Speech API for accurate and quick voice-to-text conversion.
-- **Generative AI for Natural Conversations**: Powered by the `gemini-1.5-flash` model, Smile generates insightful, human-like responses.
-- **Text-to-Speech Integration**: Using `pyttsx3`, Smile responds to your queries in a natural, articulate manner.
-- **Dynamic Mathematical Expression Interpretation**: Smile can interpret and articulate mathematical symbols and equations.
-- **Emoji Support**: Adds a fun, interactive layer to the conversation by displaying emojis that match the context.
+---
 
-#### Files Overview:
-- **`finalproject.py`**: This is the main script for the project. It includes:
-  - A `greeting()` function that tailors responses based on the time of day.
-  - The `listen()` function, which uses the Google Speech API to capture user input via the microphone.
-  - The `getquote()` function, which fetches and displays a random quote using the Quotable API.
-  - The `mrsmyle()` function, which initiates a conversational session using Google’s Generative AI for chat responses.
-  - Several utility functions like `speak()`, which converts text to speech, and `printer()`, which formats text outputs in the terminal.
+## What is Smile?
 
-- **`requirements.txt`**: This file contains a list of required libraries and dependencies, ensuring that the project can be set up easily in any Python environment. Dependencies include:
-  - `pyttsx3` for text-to-speech conversion.
-  - `speech_recognition` for capturing and interpreting voice input.
-  - `google-generativeai` for AI-powered conversation capabilities.
-  - `requests` for interacting with the Quotable API.
+Smile is a voice assistant that listens to what you say, thinks using Google's Gemini AI, and responds out loud — all from your terminal. No typing needed.
 
-#### Design Decisions:
-During the development of Smile, several design choices were carefully considered:
-- **Choosing the Generative AI Model**: After testing multiple models, I chose Google’s `gemini-1.5-flash` for its balance of speed, accuracy, and response quality. It allowed for a conversational experience that felt natural, while keeping the responses concise.
-- **Handling Mathematical Expressions**: Interpreting and speaking mathematical expressions was a challenging design task. The solution involved creating a custom function that converts mathematical notation (like superscripts and fractions) into readable text, ensuring that Smile could cater to technical users.
-- **Text-to-Speech Engine**: I chose `pyttsx3` over other options like PyAudio due to its ease of setup and flexibility with different voices, rates, and languages. This choice also allowed Smile to be used on multiple platforms without additional audio dependencies.
-- **User Interaction**: Smile includes emoji-based prompts and responses to make the interaction more engaging and visually appealing.
+It handles natural conversation, answers questions, solves math expressions, fetches motivational quotes, and more — powered by real AI, not hardcoded responses.
 
-#### How to Run the Project:
-1. Install the necessary dependencies from `requirements.txt` using:
+---
+
+## Features
+
+- 🎤 **Voice Recognition** — Captures your voice in real time via Google's Speech API
+- 🤖 **AI Conversations** — Powered by `gemini-1.5-flash` for natural, context-aware replies
+- 🔊 **Text-to-Speech** — Speaks responses back using `pyttsx3`
+- 🧮 **Math Expression Interpreter** — Reads out equations and symbols in plain English
+- 💬 **Motivational Quotes** — Fetches random quotes from the Quotable API
+- 😊 **Emoji Responses** — Displays context-matched emojis for a more engaging experience
+- 🌅 **Time-aware Greetings** — Says good morning, afternoon, or evening based on the time
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/yourusername/Smile.git
+cd Smile
+pip install -r requirements.txt
+python finalproject.py
+```
+
+### Dependencies
+
+| Library | Purpose |
+|---------|---------|
+| `pyttsx3` | Text-to-speech engine |
+| `speech_recognition` | Voice input via microphone |
+| `google-generativeai` | Gemini AI conversation |
+| `requests` | Fetch quotes from Quotable API |
+
+---
+
+## How It Works
+
+1. Smile greets you based on the time of day
+2. You speak a command or question into your microphone
+3. Your speech is converted to text via Google's Speech API
+4. The text is sent to Gemini AI which generates a response
+5. The response is spoken back to you via `pyttsx3`
+
+---
+
+## File Structure
+
+```
+Smile/
+├── finalproject.py     # Main application
+├── requirements.txt    # Project dependencies
+└── README.md
+```
+
+### Key Functions in `finalproject.py`
+
+| Function | What it does |
+|----------|-------------|
+| `greeting()` | Greets the user based on time of day |
+| `listen()` | Captures voice input via microphone |
+| `speak()` | Converts text to speech |
+| `mrsmyle()` | Starts an AI conversation session with Gemini |
+| `getquote()` | Fetches and reads a random motivational quote |
+| `printer()` | Formats terminal text output |
+
+---
+
+## Testing
+
+Tests are written with `pytest` and use `unittest.mock` to simulate hardware (microphone) and external APIs without needing a real connection.
+
+```bash
+pytest test_project.py
+```
+
+| Test | What it covers |
+|------|---------------|
+| `test_greeting_morning/afternoon/evening` | Correct greeting based on time of day |
+| `test_speak` | `pyttsx3` engine is called with the right text |
+| `test_time` | `_time()` returns the correct datetime |
+| `test_listen` | Speech recognizer returns transcribed text |
+| `test_getquote` | Quote API response is parsed and formatted correctly |
+| `test_replace_math_expressions` | Math symbols (², ³) are converted to spoken words |
+| `test_mrsmyle` | Gemini AI receives the user's message correctly |
+| `test_main` | Main loop calls `listen()` and handles exit command |
+
+All external dependencies (microphone, Google Speech API, Gemini AI, Quotable API) are mocked so tests run fully offline.
+
+---
+
+## Design Decisions
+
+**Why Gemini 1.5 Flash?**
+After testing multiple models, Gemini 1.5 Flash offered the best balance of speed and response quality — fast enough for real-time voice interaction without sacrificing accuracy.
+
+**Why pyttsx3?**
+It works offline, supports multiple platforms, and allows full control over voice, speed, and language — no extra audio dependencies needed.
+
+**Math expressions?**
+A custom parser converts symbols like superscripts and fractions into speakable text, so Smile can handle technical queries out loud.
+
+---
+
+## Author
+
+Built by **[Simbarashe Kamwara]**
+🔗 [LinkedIn](https://linkedin.com/in/simbarashekamwara) · [GitHub](https://github.com/simbarashekamwara)
+
+---
+
+> CS50P Final Project — 2026
